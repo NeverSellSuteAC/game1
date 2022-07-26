@@ -10,7 +10,7 @@ onready var skill = $atkContainer/VBoxContainer/skill
 
 var playerDataList = {}
 # Called when the node enters the scene tree for the first time.
-# 游戏运行状态1
+# 游戏运行状态2
 var status = 1
 # 游戏暂停间隙
 var spaceTime = 0.05
