@@ -59,3 +59,9 @@ func setDataList(dataList):
 # 设置根节点
 func setTreeNode(node):
 	treeNode = node
+
+func playerDie(data):
+	for speed in speedObjList:
+		if speed.data.id == data.id:
+			speed.die()
+			return

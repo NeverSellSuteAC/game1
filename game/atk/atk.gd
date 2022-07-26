@@ -17,6 +17,8 @@ var spaceTime = 0.05
 var skillSize = 5
 var skillClickTime = 1
 func _ready():
+	Config.skillLoad()
+	Config.buffLoad()
 	randomize()
 	initAtkList()
 	pass # Replace with function body.
@@ -39,9 +41,7 @@ func _physics_process(delta):
 
 # 技能开始蓄力
 func _on_speed_atkStart(id,node):
-#	print("start:"+str(id))
 	var playerSkill = getAtkSkill(id)
-	print(playerSkill.get("atkTime"))
 	node.setAtkTime(playerSkill.atkTime)
 
 # 技能蓄力完毕
@@ -157,17 +157,8 @@ func initAtkList():
 			"atk" : 20,
 			"powerMax": 500,
 			"power": 500,
-			"buffList": [
-				{
-					"id": 1,
-					"time": 30,
-					"buffId" : randi(),
-				},
-				{
-					"id": 2,
-					"time": 3,
-					"buffId" : randi(),
-				},
+			"buffList": [Buff_1.new({"time": 30}),
+						Buff_2.new({"time": 3}),
 			],
 		},
 		{
@@ -181,7 +172,7 @@ func initAtkList():
 			"healthMax": 400,
 			"defense": 10,
 			"ling" : 100,
-			"atk" : 20,
+			"atk" : 60,
 			"powerMax": 500,
 			"power": 500,
 			"buffList": [],
@@ -217,4 +208,13 @@ func pauseGame(newStatus):
 	speed.status = newStatus
 	mainContainer.status = newStatus
 	skill.status = newStatus
+
+func _on_playerDie(data):
+	self.speed.playerDie(data)
+	pass
+
+
+
+
+
 

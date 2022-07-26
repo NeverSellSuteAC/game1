@@ -1,5 +1,7 @@
 extends MarginContainer
 
+signal playerDie
+
 onready var gui = $mainBox/dataBox/GUI
 onready var img = $mainBox/dataBox/imgContainer
 onready var playerImg = $mainBox/dataBox/imgContainer/TextureRect
@@ -61,14 +63,17 @@ func _physics_process(delta):
 		pauseGame(1)
 		statusChange = 1
 	
-	if data.health <= 0:
+	if data.health <= 0 and status != -1:
 		die()
 
 func die():
-	pass
+	emit_signal("playerDie", data)
+	status = -1
 
 # 暂停游戏
 func pauseGame(status):
+	if status == -1:
+		return
 	for skillObj in skillObjList:
 		skillObj.pauseGame(status)
 	for buffObj in buffObjList:
@@ -122,16 +127,6 @@ func buffInit(type: int = 0):
 		buffObjList.append(buffObj)
 		buffBox1.add_child(buffObj)
 
-
-func createBuffNode(buff):
-	var buffObj = skillNode.instance()
-	Config.addData(buff, Config.buffList[buff.id])
-	buffObj.setData(buff)
-	buffObj.type = 2
-	buffObj.connect("showSkill",self,"_on_skill_showSkill")
-	buffObj.connect("noShowSkill",self,"_on_skill_noShowSkill")
-	buffObj.connect("buffEnd",self,"_on_buff_buffEnd")
-	return buffObj
 
 func getFirstSkill():
 	# 判断左右翻转
@@ -200,6 +195,15 @@ func createSkillNode(skillId):
 	skillObj.connect("noShowSkill",self,"_on_skill_noShowSkill")
 	return skillObj
 
+func createBuffNode(buff):
+	var buffObj = skillNode.instance()
+	buffObj.setData(buff)
+	buffObj.type = 2
+	buffObj.connect("showSkill",self,"_on_skill_showSkill")
+	buffObj.connect("noShowSkill",self,"_on_skill_noShowSkill")
+	buffObj.connect("buffEnd",self,"_on_buff_buffEnd")
+	return buffObj
+
 # 镜像处理
 func flip():
 	isFilp = true
@@ -247,11 +251,11 @@ func _on_powerProgress_mouse_exited():
 
 # buff消失
 func _on_buff_buffEnd(data):
-	data.buffEnd.call_func(self.data, data)
+	data.buffEnd(self.data)
 	var index = null
 	var i = 0
 	for buff in self.data.buffList:
-		if data.buffId == buff.buffId:
+		if data._skill_id == buff._skill_id:
 			index = i
 		i += 1
 	self.data.buffList.remove(index)

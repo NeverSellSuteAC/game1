@@ -20,13 +20,11 @@ var atkTime = 1
 # 
 func _ready():
 	initData()
-	pass # Replace with function body.
 
 # 初始化
 func initData():
 	texture = load(data.img)
 	rect_position.x = 950
-	pass
 
 func _physics_process(delta):
 	if status == 1:
@@ -35,44 +33,42 @@ func _physics_process(delta):
 			atkStart()
 		else:
 			rect_position.x = positionX
-		pass
 	elif status == 2:
 		pass
 	elif status == 3 and atkTime <=0 :
 		atkOver()
 		rect_position.x = 950
-		pass
 	elif status == 3 and atkTime >0 :
 		atkTime -= delta
-		pass
-	pass
 
 # 暂停游戏
 func pauseGame(status):
+	if status == -1:
+		return
 	self.status = status
-	pass
+
+func die():
+	print("死了")
+	status = -1
+	modulate = Color(1, 1, 1, 0.2)
 
 # 攻击蓄力完成
 func atkOver():
 	emit_signal("atkOver",data.id,self)
 #	status = 1
-	pass
 
 # 攻击蓄力开始
 func atkStart():
 	emit_signal("atkStart",data.id,self)
-	pass
 
 # 设置攻击蓄力时间
 func setAtkTime(time):
 	atkTime = time
 	status = 3
-	pass
 
 # 设置数据
 func setData(data):
 	self.data = data
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

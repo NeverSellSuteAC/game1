@@ -24,6 +24,9 @@ var ordinaryAtk3 = load("res://atk/skill/skill_3.gd")
 var ordinaryAtk4 = load("res://atk/skill/skill_4.gd")
 var ordinaryAtk5 = load("res://atk/skill/skill_5.gd")
 var ordinaryAtk6 = load("res://atk/skill/skill_6.gd")
+# buff
+var buff1 = load("res://atk/skill/buff_1.gd")
+var buff2 = load("res://atk/skill/buff_2.gd")
 # 鼠标背包点击按下抬起状态
 export var mouse_click_move = false
 # 道具属性
@@ -83,46 +86,43 @@ func addAtk(skill,player,atkTargetList):
 	return targetIdList
 
 
-var skillList = {
-	1:ordinaryAtk1,
-	2:ordinaryAtk2,
-	3:ordinaryAtk3,
-	4:ordinaryAtk4,
-	5:ordinaryAtk5,
-	6:ordinaryAtk6,
-}
-var buffList = {
-	1:{
-		"img": "res://atk/img/气.png",
-		"name": "气招",
-		"describe": "加强atk几个回合",
-		"baseXH" : 10 ,
-		"ratio" : 0.1 ,
-		"id": 1,
-		"type" : "气",
-		"atk" : 20 ,
-		"atkTime": 1,
-		"run" : funcref(self,"atk"),
-		"buffEnd" : funcref(self,"atkChange"),
-		"targetGroup" : false,
-		"cd" : 1,
-	},
-	2:{
-		"img": "res://atk/img/禁.png",
-		"name": "禁招",
-		"describe": "封禁技能几个回合",
-		"baseXH" : 10 ,
-		"ratio" : 0.1 ,
-		"id": 2,
-		"type" : "禁",
-		"atk" : -20 ,
-		"atkTime": 5,
-		"run" : funcref(self,"atk"),
-		"buffEnd" : funcref(self,"atkChange"),
-		"targetGroup" : true,
-		"cd" : 1,
-	},
-}
+var skillList = {}
+var buffList = {}
+
+# 加载技能列表
+func skillLoad():
+	var path = "res://atk/skill"
+	var type = "skill_"
+	var list = dir_contents(path, type)
+	for fileName in list:
+		skillList[skillList.size() + 1] = load(fileName)
+# 加载buff列表
+func buffLoad():
+	var path = "res://atk/skill"
+	var type = "buff_"
+	var list = dir_contents(path, type)
+	for fileName in list:
+		buffList[buffList.size() + 1] = load(fileName)
+	
+
+func dir_contents(path, type):
+	var list = []
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				pass
+			else:
+				pass
+				if file_name.find(type) >= 0:
+					list.append(path + "/" + file_name)
+			file_name = dir.get_next()
+	else:
+		print("尝试访问路径时出错。")
+	return list
+
 
 func atkChange(playerData, buff):
 	playerData.atk -= buff.atk

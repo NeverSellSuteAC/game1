@@ -21,6 +21,8 @@ onready var panel = $PanelContainer
 onready var texture = $PanelContainer/TextureRect
 # 技能消耗量
 onready var xh = $Node2D/xh
+# buff层数
+onready var buff = $Node2D/buff
 # 技能CD
 onready var cd = $PanelContainer/cd
 
@@ -75,6 +77,7 @@ func buffInit():
 #	self.rect_scale.y = 0.5
 
 func _physics_process(delta):
+	# 通用消除处理
 	if modulateValue > 0 and modulateValue < 1:
 		self.modulate = Color(1,1,1,modulateValue)
 #		self.rect_position.x = positionValue
@@ -90,9 +93,13 @@ func _physics_process(delta):
 		if informationNode != null:
 			informationNode.queue_free()
 			pass
+	# 技能栏点击间隔处理
 	if clickTime > 0 :
 		clickTime -= delta
+	
+	# buff类型的特殊操作
 	if type == 2 and stauts == 1:
+		# 时限到期处理
 		if data.time >0:
 			data.time -= delta
 			xh.text = str(stepify(data.time,1))
@@ -100,6 +107,7 @@ func _physics_process(delta):
 			if not tween.is_active():
 				emit_signal("buffEnd", data)
 				self.queueFree()
+		# 层数处理
 	
 # 暂停游戏
 func pauseGame(status):

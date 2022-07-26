@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://atk/skill/buff.gd"
 }, {
+"base": "Buff",
+"class": "Buff_1",
+"language": "GDScript",
+"path": "res://atk/skill/buff_1.gd"
+}, {
+"base": "Buff",
+"class": "Buff_2",
+"language": "GDScript",
+"path": "res://atk/skill/buff_2.gd"
+}, {
 "base": "Reference",
 "class": "Skill",
 "language": "GDScript",
@@ -49,10 +59,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://atk/skill/skill_6.gd"
 }, {
-"base": "Skill",
+"base": "Reference",
 "class": "Skill_example",
 "language": "GDScript",
-"path": "res://atk/skill/skill_example.gd"
+"path": "res://atk/skill/example/skill_example.gd"
 }, {
 "base": "Reference",
 "class": "fff",
@@ -66,6 +76,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Buff": "",
+"Buff_1": "",
+"Buff_2": "",
 "Skill": "",
 "Skill_1": "",
 "Skill_2": "",

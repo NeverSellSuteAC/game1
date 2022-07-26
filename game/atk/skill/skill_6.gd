@@ -40,30 +40,15 @@ func initData():
 func run(player,atkTargetList):
 	# 受影响的对象id数组
 	var targetIdList = []
-	
-	
 	# 多重目标判断
-	var atkObjList = []
-	var i = 0
-	for atkTarget in atkTargetList:
-		# 个数判断
-		if i == atkMore:
-			break
-		# 目标状态判断
-		if atkTarget.health <= 0:
-			continue
-		atkObjList.append(atkTarget)
-		i += 1
+	var atkObjList = getAtkTargetList(atkTargetList)
 	if atkObjList.size() <= 0:
 		return targetIdList
-	
 	# 技能计算
 	for target in atkObjList:
-		var buff = Config.buffList.get(buff_id).duplicate(true)
+		var buff = Config.buffList[buff_id].new()
 		buff.time = 10
-		buff.buffId = randi()
 		target.buffList.append(buff)
 		target.atk += buff.atk
 		targetIdList.append(target.id)
-	
 	return targetIdList

@@ -38,13 +38,17 @@ func initData():
 
 # 攻击时调用方法
 func run(player,atkTargetList):
-	var buff = Config.buffList.get(buff_id).duplicate(true)
-	buff.time = 10
-	buff.buffId = randi()
-	player.buffList.append(buff)
-	
 	# 受影响的对象id数组
 	var targetIdList = []
-	targetIdList.append(player.id)
-	player.atk += buff.atk
+	# 多重目标判断
+	var atkObjList = getAtkTargetList(atkTargetList)
+	if atkObjList.size() <= 0:
+		return targetIdList
+	# 技能计算
+	for target in atkObjList:
+		var buff = Config.buffList[buff_id].new()
+		buff.time = 10
+		target.buffList.append(buff)
+		target.atk += buff.atk
+		targetIdList.append(target.id)
 	return targetIdList

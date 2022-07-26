@@ -57,6 +57,14 @@ custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 2
 valign = 2
 
+[node name="buff" type="Label" parent="Node2D"]
+margin_right = 85.0
+margin_bottom = 85.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+valign = 2
+
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="gui_input" from="PanelContainer" to="." method="_on_PanelContainer_gui_input"]

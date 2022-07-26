@@ -68,6 +68,19 @@ func run(player,atkTargetList):
 	# 受影响的对象id数组
 	var targetIdList = []
 	# 多重目标判断
+	var atkObjList = getAtkTargetList(atkTargetList)
+	if atkObjList.size() <= 0:
+		return targetIdList
+	# 技能计算
+	for target in atkObjList:
+		var baseAtk = atk * player.get("atk")
+		var baseDefense = target.get("defense")
+		var realAtk = baseAtk - baseDefense
+		target.health -= realAtk
+		targetIdList.append(target.id)
+	return targetIdList
+
+func getAtkTargetList(atkTargetList):
 	var atkObjList = []
 	var i = 0
 	for atkTarget in atkTargetList:
@@ -80,16 +93,7 @@ func run(player,atkTargetList):
 			pass
 		atkObjList.append(atkTarget)
 		i += 1
-	if atkObjList.size() <= 0:
-		return targetIdList
-	# 技能计算
-	for target in atkObjList:
-		var baseAtk = atk * player.get("atk")
-		var baseDefense = target.get("defense")
-		var realAtk = baseAtk - baseDefense
-		target.health -= realAtk
-		targetIdList.append(target.id)
-	return targetIdList
+	return atkObjList
 
 func getData():
 	return data

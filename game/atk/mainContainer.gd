@@ -28,6 +28,7 @@ func initPlayerList():
 		elif playerData.atkGroup == 2:
 			atkGroup2.add_child(playerObj)
 		playerObjList[playerData.id] = playerObj
+		playerObj.connect("playerDie", treeNode, "_on_playerDie")
 
 func _physics_process(delta):
 	if status == 2 and statusChange == 1:
