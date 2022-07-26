@@ -105,8 +105,8 @@ func _physics_process(delta):
 			xh.text = str(stepify(data.time,1))
 		else:
 			if not tween.is_active():
-				emit_signal("buffEnd", data)
 				self.queueFree()
+				emit_signal("buffEnd", data)
 		# 层数处理
 	
 # 暂停游戏
@@ -209,6 +209,7 @@ func removeCd():
 #	$PanelContainer.remove_child($PanelContainer/cd)
 
 func queueFree(atkGroup: int = 1):
+	stauts = 3
 	tween.interpolate_property(self, "modulateValue", modulateValue, 0, tweenTime, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()
