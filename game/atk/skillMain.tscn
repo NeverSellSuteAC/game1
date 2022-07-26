@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://atk/img/境.png" type="Texture" id=2]
+[ext_resource path="res://atk/img/全部.png" type="Texture" id=3]
+[ext_resource path="res://atk/img/攻.png" type="Texture" id=4]
+[ext_resource path="res://atk/img/气.png" type="Texture" id=5]
+[ext_resource path="res://atk/img/防.png" type="Texture" id=6]
+[ext_resource path="res://atk/img/禁.png" type="Texture" id=7]
+[ext_resource path="res://atk/img/耗.png" type="Texture" id=8]
+[ext_resource path="res://atk/img/练.png" type="Texture" id=9]
+[ext_resource path="res://atk/img/魂.png" type="Texture" id=10]
+[ext_resource path="res://atk/skillMain.gd" type="Script" id=13]
+
+[node name="skillMain" type="MarginContainer"]
+margin_top = 758.0
+margin_right = 1600.0
+margin_bottom = 856.0
+custom_constants/margin_left = 200
+script = ExtResource( 13 )
+
+[node name="skillContainer" type="VBoxContainer" parent="."]
+margin_left = 200.0
+margin_right = 1600.0
+margin_bottom = 98.0
+
+[node name="skillType" type="MarginContainer" parent="skillContainer"]
+margin_right = 1200.0
+rect_min_size = Vector2( 1200, 0 )
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="skillContainer/skillType"]
+margin_right = 1200.0
+
+[node name="skillTypeBtu" type="Node2D" parent="skillContainer/skillType/HBoxContainer"]
+z_index = 1
+
+[node name="全部" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_top = -38.0
+margin_right = 200.0
+margin_bottom = 62.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="攻" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 104.0
+margin_top = -22.0
+margin_right = 170.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="防" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 144.0
+margin_top = -22.0
+margin_right = 210.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="气" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 184.0
+margin_top = -22.0
+margin_right = 250.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="禁" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 224.0
+margin_top = -22.0
+margin_right = 290.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="境" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 1024.0
+margin_top = -30.0
+margin_right = 1090.0
+margin_bottom = 90.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="耗" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 1064.0
+margin_top = -30.0
+margin_right = 1130.0
+margin_bottom = 90.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="练" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 1104.0
+margin_top = -30.0
+margin_right = 1170.0
+margin_bottom = 106.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="魂" type="TextureRect" parent="skillContainer/skillType/HBoxContainer/skillTypeBtu"]
+margin_left = 1144.0
+margin_top = -30.0
+margin_right = 1210.0
+margin_bottom = 90.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="skillList" type="PanelContainer" parent="skillContainer"]
+margin_top = 4.0
+margin_right = 1200.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 1200, 0 )
+size_flags_horizontal = 0
+
+[node name="skillHBox" type="HBoxContainer" parent="skillContainer/skillList"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1193.0
+margin_bottom = 7.0
+custom_constants/separation = 20
+
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/全部" to="." method="_on__gui_input" binds= [ "全部" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/攻" to="." method="_on__gui_input" binds= [ "攻" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/防" to="." method="_on__gui_input" binds= [ "防" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/气" to="." method="_on__gui_input" binds= [ "气" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/禁" to="." method="_on__gui_input" binds= [ "禁" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/境" to="." method="_on__gui_input" binds= [ "境" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/耗" to="." method="_on__gui_input" binds= [ "耗" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/练" to="." method="_on__gui_input" binds= [ "练" ]]
+[connection signal="gui_input" from="skillContainer/skillType/HBoxContainer/skillTypeBtu/魂" to="." method="_on__gui_input" binds= [ "魂" ]]

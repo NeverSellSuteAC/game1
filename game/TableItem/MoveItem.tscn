@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TableItem/ItemBorder.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TableItem/MoveItem.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.835294, 0.0823529, 0.0823529, 0 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.74902, 0.0941176, 0.819608, 0 )
+
+[node name="MoveItem" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ItemBorder" parent="." instance=ExtResource( 1 )]
+margin_left = -41.3204
+margin_top = -41.695
+margin_right = 44.6796
+margin_bottom = 44.305
+theme = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
+
+[editable path="ItemBorder"]

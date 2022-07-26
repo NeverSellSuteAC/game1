@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://atk/mainContainer.gd" type="Script" id=3]
+
+[node name="mainContainer" type="MarginContainer"]
+margin_top = 154.0
+margin_right = 1600.0
+margin_bottom = 318.0
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+script = ExtResource( 3 )
+
+[node name="main" type="HBoxContainer" parent="."]
+margin_left = 50.0
+margin_right = 1550.0
+margin_bottom = 164.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="atkGroup1" type="VBoxContainer" parent="main"]
+margin_right = 1496.0
+margin_bottom = 164.0
+size_flags_horizontal = 3
+
+[node name="atkGroup2" type="VBoxContainer" parent="main"]
+margin_left = 1500.0
+margin_right = 1500.0
+margin_bottom = 164.0
+size_flags_horizontal = 9

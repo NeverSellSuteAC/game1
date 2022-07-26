@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://img/emeralds_icon.png" type="Texture" id=1]
+[ext_resource path="res://img/lifebar_fill.png" type="Texture" id=3]
+[ext_resource path="res://img/energy_bar_bg.png" type="Texture" id=4]
+[ext_resource path="res://img/energy_bar_fill.png" type="Texture" id=5]
+[ext_resource path="res://img/label_HP_bg.png" type="Texture" id=6]
+[ext_resource path="res://img/lifebar_bg.png" type="Texture" id=7]
+[ext_resource path="res://atk/player.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://font/msyh.ttc"
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 2 )
+
+[node name="player" type="MarginContainer"]
+margin_right = 1496.0
+margin_bottom = 221.0
+script = ExtResource( 8 )
+
+[node name="mainBox" type="VBoxContainer" parent="."]
+margin_right = 1496.0
+margin_bottom = 221.0
+custom_constants/separation = 60
+
+[node name="dataBox" type="HBoxContainer" parent="mainBox"]
+margin_right = 1496.0
+margin_bottom = 137.0
+
+[node name="imgContainer" type="MarginContainer" parent="mainBox/dataBox"]
+margin_right = 80.0
+margin_bottom = 137.0
+custom_constants/margin_top = 25
+
+[node name="TextureRect" type="TextureRect" parent="mainBox/dataBox/imgContainer"]
+margin_top = 25.0
+margin_right = 80.0
+margin_bottom = 137.0
+texture = ExtResource( 1 )
+
+[node name="GUI" type="MarginContainer" parent="mainBox/dataBox"]
+margin_left = 84.0
+margin_right = 520.0
+margin_bottom = 137.0
+mouse_filter = 1
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Bars" type="VBoxContainer" parent="mainBox/dataBox/GUI"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 416.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+
+[node name="healthProgress" type="TextureProgress" parent="mainBox/dataBox/GUI/Bars"]
+margin_right = 396.0
+margin_bottom = 53.0
+value = 50.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="mainBox/dataBox/GUI/Bars/healthProgress"]
+modulate = Color( 1, 0, 0, 0 )
+margin_left = 178.0
+margin_top = 13.0
+margin_right = 218.0
+margin_bottom = 32.0
+mouse_filter = 1
+text = "1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="mainBox/dataBox/GUI/Bars"]
+margin_top = 57.0
+margin_right = 396.0
+margin_bottom = 97.0
+
+[node name="powerProgress" type="TextureProgress" parent="mainBox/dataBox/GUI/Bars/HBoxContainer"]
+margin_right = 248.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( -514, 73 )
+value = 50.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="mainBox/dataBox/GUI/Bars/HBoxContainer/powerProgress"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 103.0
+margin_top = 7.0
+margin_right = 143.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+
+[node name="level" type="NinePatchRect" parent="mainBox/dataBox/GUI/Bars/HBoxContainer"]
+margin_left = 252.0
+margin_right = 252.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+
+[node name="Title" type="Label" parent="mainBox/dataBox/GUI/Bars/HBoxContainer/level"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -4.0
+margin_top = -20.0
+margin_right = 140.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 3 )
+text = "金丹期"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="mainBox/dataBox/GUI"]
+
+[node name="buffBox" type="Node2D" parent="mainBox"]
+
+[node name="buffBox" type="HBoxContainer" parent="mainBox/buffBox"]
+margin_top = 141.0
+margin_right = 1496.0
+margin_bottom = 141.0
+custom_constants/separation = 20
+
+[node name="skillBox" type="HBoxContainer" parent="mainBox"]
+margin_top = 197.0
+margin_right = 1496.0
+margin_bottom = 197.0
+
+[connection signal="mouse_entered" from="mainBox/dataBox/GUI/Bars/healthProgress" to="." method="_on_healthProgress_mouse_entered"]
+[connection signal="mouse_exited" from="mainBox/dataBox/GUI/Bars/healthProgress" to="." method="_on_healthProgress_mouse_exited"]
+[connection signal="mouse_entered" from="mainBox/dataBox/GUI/Bars/HBoxContainer/powerProgress" to="." method="_on_powerProgress_mouse_entered"]
+[connection signal="mouse_exited" from="mainBox/dataBox/GUI/Bars/HBoxContainer/powerProgress" to="." method="_on_powerProgress_mouse_exited"]
