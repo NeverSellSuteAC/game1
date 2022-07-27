@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://img/bg.png" type="Texture" id=1]
+[ext_resource path="res://img/DirtTileset.png" type="Texture" id=1]
 [ext_resource path="res://Run/map.gd" type="Script" id=2]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Run/Player_dog.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="mapMain" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="run" type="CanvasLayer" parent="."]
@@ -25,6 +25,8 @@ position = Vector2( 440.235, 273.777 )
 
 [node name="GUI" parent="gui" instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 0.909804 )
+
+[node name="atk" type="CanvasLayer" parent="."]
 
 [connection signal="base_update" from="." to="." method="_on_Node2D_base_update"]
 [connection signal="exp_max_update" from="." to="gui/GUI" method="_on_Node2D_exp_max_update"]

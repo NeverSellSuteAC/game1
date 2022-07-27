@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://atk/skill/skill_6.gd"
 }, {
-"base": "Reference",
+"base": "Skill",
 "class": "Skill_example",
 "language": "GDScript",
 "path": "res://atk/skill/example/skill_example.gd"

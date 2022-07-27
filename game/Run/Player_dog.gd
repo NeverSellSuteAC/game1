@@ -22,6 +22,8 @@ var root
 func _ready():
 	root = get_tree().current_scene.get_node("run")
 	screen_size = get_viewport_rect().size
+	
+	$body.connect("area_entered", get_tree().current_scene, "_atkRun")
 
 var rangeTime = 0
 var atkAnimationTime = 0

@@ -159,3 +159,12 @@ func _on_Node2D_base_update():
 	var updateData = { "base":0 }
 	player.updatePlayerData(updateData)
 	pass # Replace with function body.
+
+var atk = null
+func _atkRun(area2d):
+	print("啊啊啊啊")
+#	get_tree().change_scene("res://atk/atk.tscn")
+	if atk != null:
+		return
+	atk = load("res://atk/atk.tscn").instance()
+	get_tree().current_scene.get_node("atk").add_child(atk)
