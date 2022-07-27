@@ -95,15 +95,23 @@ func skillLoad():
 	var type = "skill_"
 	var list = dir_contents(path, type)
 	for fileName in list:
-		skillList[skillList.size() + 1] = load(fileName)
+		var skillId = getSkillId(path, type, fileName)
+		skillList[skillId] = load(fileName)
 # 加载buff列表
 func buffLoad():
 	var path = "res://atk/skill"
 	var type = "buff_"
 	var list = dir_contents(path, type)
 	for fileName in list:
-		buffList[buffList.size() + 1] = load(fileName)
-	
+		var skillId = getSkillId(path, type, fileName)
+		buffList[skillId] = load(fileName)
+
+# 获取技能id ,技能id必须是int类型
+func getSkillId(path, type, fileName):
+	var strIndex = path.length() + type.length()  + 1
+	var endIndex = fileName.find(".")
+	var skillId = int(fileName.substr(strIndex, endIndex - strIndex))
+	return skillId
 
 func dir_contents(path, type):
 	var list = []

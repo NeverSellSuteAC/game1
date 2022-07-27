@@ -172,7 +172,7 @@ func initAtkList():
 			"healthMax": 400,
 			"defense": 10,
 			"ling" : 100,
-			"atk" : 60,
+			"atk" : 30,
 			"powerMax": 500,
 			"power": 500,
 			"buffList": [],
